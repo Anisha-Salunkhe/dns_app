@@ -2,10 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Mar 30 10:48:15 2020
-
-@author: jc
 """
-
 
 import requests
 
