@@ -16,13 +16,10 @@ def accept_request():
     as_ip = request.args['as_ip']
     as_port = int(request.args['as_port'])
     number = request.args['number']
-    # print(hostname)
-    # print(fs_port)
-    # print(as_ip)
-    # print(as_port)
-    # print(number)
+
     if hostname == '' or fs_port == '' or as_ip == '' or as_port == '' or number == '' or not number.isdigit():
         return 'bad format', status.HTTP_400_BAD_REQUEST
+        
     fs_ip = query_authoritative_server(as_ip, as_port, hostname)
     real_add = 'http://' + fs_ip + ':' + fs_port
     dict_to_send_1 = {'number': number}

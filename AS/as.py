@@ -18,7 +18,7 @@ def get_request(query_message):
     if not ip:
         hostname = message['NAME']
         request_type = message['TYPE']
-        return dns_query(hostname, request_type)
+        return dns_request(hostname, request_type)
     else:
         hostname = message['NAME']
         ip = message['VALUE']
@@ -27,7 +27,7 @@ def get_request(query_message):
         return register(hostname, ip, request_type, ttl)
 
 
-def dns_query(hostname, request_type):
+def dns_request(hostname, request_type):
     content = ip_map[request_type + ' ' + hostname]
     fs_ip = content['VALUE']
     return str(fs_ip).encode()

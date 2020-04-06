@@ -24,17 +24,17 @@ def calculate_fibonacci_number(number):
 @app.route('/register', methods = ['PUT'])
 def register():
     content = request.get_json()
-    # print(content)
     hostname = content.get('hostname')
     ip = content.get('ip')
     as_ip = content.get('as_ip')
     as_port = int(content.get('as_port'))
+
     register_json = {'TYPE': 'A', 'NAME': hostname, 'VALUE': ip, 'TTL': 10}
-    # print(register_json)
+
     client_socket = socket(AF_INET, SOCK_DGRAM)
     client_socket.sendto(json.dumps(register_json).encode(), (as_ip, as_port))
     response_message, server_address = client_socket.recvfrom(2048)
-    return 'successfully registered', status.HTTP_201_CREATED
+    return 'Registered Ok', status.HTTP_201_CREATED
 
 
 app.run(host='0.0.0.0',
